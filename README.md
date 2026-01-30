@@ -24,7 +24,8 @@ Designed and deployed a **Windows Server 2022 Domain Controller** to simulate th
 *(Note: Ensure your image filename matches exactly)*
 
 ### Active Directory Architecture
-*(You can add your ADUC screenshot here)*
+<img width="962" height="802" alt="Automated_User_Provisioning_Proof" src="https://github.com/user-attachments/assets/3a4bfb80-2e4c-4e7d-ba11-cef077aff705" />
+
 
 ---
 *Lab Environment: Windows Server 2022 (Evaluation), VirtualBox, PowerShell 5.1*
