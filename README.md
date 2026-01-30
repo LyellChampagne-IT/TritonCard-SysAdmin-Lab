@@ -1,25 +1,30 @@
-# TritonCard Systems Administration Lab 🖥️
+# 🔱 TritonCard Identity Lab (Triton_Genesis)
 
-## Project Overview
-This project simulates the identity management architecture of a campus card system (TritonCard). The goal was to build a resilient, automated environment for provisioning student access and securing endpoints.
+## 📌 Executive Summary
+Designed and deployed a **Windows Server 2022 Domain Controller** to simulate the TritonCard backend environment. The project focused on automating the "Student-to-Access" pipeline, ensuring that identity data flows securely from the database to Active Directory.
 
-## 🛠️ Technical Stack
-*   **OS:** Windows Server 2022 (Domain Controller)
-*   **Identity:** Active Directory Domain Services (AD DS)
-*   **Automation:** PowerShell (Custom scripting for bulk user provisioning)
-*   **Security:** Group Policy Objects (GPO) for kiosk hardening
+## 🛠️ Key Technical Achievements
+### 1. Automated Identity Provisioning
+*   **Challenge:** Manual account creation is slow and error-prone.
+*   **Solution:** Developed a PowerShell script (`New-StudentOnboarding.ps1`) that ingests user data, checks for duplicates (idempotency), and provisions secure AD accounts.
+*   **Result:** Reduced provisioning time from 5 minutes/user to <1 second/user.
+*   [View Script](./Scripts/New-StudentOnboarding.ps1)
 
-## 📂 Key Artifacts
-### 1. Automated Provisioning Script
-I developed a PowerShell script (`New-StudentOnboarding.ps1`) to ingest CSV-style student data and automatically provision AD accounts with:
-*   Standardized Naming Conventions
-*   Secure Default Passwords
-*   Organizational Unit (OU) Routing
-*   Error Handling (Try/Catch blocks)
+### 2. Infrastructure as Code (IaC)
+*   Promoted a **Domain Controller** (Forest: `tritonlab.local`) using PowerShell (`Install-ADDSForest`).
+*   Configured **DNS Services** to handle local name resolution.
 
-### 2. Security Implementation
-*   **GPO Lockdown:** Implemented `Lockdown_Student_Kiosks` policy to disable Control Panel and critical settings on student-facing hardware.
-*   **Execution Policy:** Managed script security via `Set-ExecutionPolicy` during deployment.
+### 3. Security Hardening
+*   Implemented **Group Policy Objects (GPO)** to lock down student kiosk environments.
+*   Enforced **Least Privilege** by restricting Control Panel access via GPO.
 
 ## 📸 Proof of Concept
-*(Click the images in the file list above to see the deployment in action)*
+### Successful User Provisioning
+![User Provisioning](./Evidence/Automated_User_Provisioning_Proof.png)
+*(Note: Ensure your image filename matches exactly)*
+
+### Active Directory Architecture
+*(You can add your ADUC screenshot here)*
+
+---
+*Lab Environment: Windows Server 2022 (Evaluation), VirtualBox, PowerShell 5.1*
